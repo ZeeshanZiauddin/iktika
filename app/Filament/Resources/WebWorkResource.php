@@ -5,6 +5,8 @@ use App\Filament\Resources\WebWorkResource\Pages;
 use App\Models\WebWork;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Textarea;
@@ -17,7 +19,6 @@ class WebWorkResource extends Resource
 {
     protected static ?string $model = WebWork::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Web Work Management';
 
     public static function form(Forms\Form $form): Forms\Form
     {
@@ -30,26 +31,35 @@ class WebWorkResource extends Resource
                 ->imageResizeTargetHeight(1080)
                 ->columnSpanFull()
                 ->nullable(),
+            Grid::make([
+                'default' => 3,
+            ])
+                ->schema([
+                    TextInput::make('title')
+                        ->placeholder('Title here ...')
+                        ->maxLength(255)
+                        ->nullable(),
 
-            TextInput::make('title')
-                ->maxLength(255)
-                ->nullable(),
+                    DatePicker::make('date')
+                        ->native(false)
+                        ->placeholder('Dateof Completion')
+                        ->nullable(),
 
-            DatePicker::make('date')
-                ->nullable(),
+                    TextInput::make('for')
+                        ->maxLength(255)
+                        ->placeholder('Name of the client')
+                        ->nullable(),
+                ]),
 
             Textarea::make('short_description')
                 ->rows(3)
                 ->maxLength(255)
+                ->columnSpanFull()
+                ->nullable(),
+            RichEditor::make('description')
+                ->columnSpanFull()
                 ->nullable(),
 
-            Textarea::make('description')
-                ->rows(5)
-                ->nullable(),
-
-            TextInput::make('for')
-                ->maxLength(255)
-                ->nullable(),
         ]);
 
     }
@@ -63,7 +73,6 @@ class WebWorkResource extends Resource
 
             TextColumn::make('title')->sortable()->searchable(),
             TextColumn::make('date')->date()->sortable(),
-            TextColumn::make('description')->limit(50),
         ]);
     }
 
@@ -76,8 +85,8 @@ class WebWorkResource extends Resource
     {
         return [
             'index' => Pages\ListWebWorks::route('/'),
-            'create' => Pages\CreateWebWork::route('/create'),
-            'edit' => Pages\EditWebWork::route('/{record}/edit'),
+            //'create' => Pages\CreateWebWork::route('/create'),
+            //'edit' => Pages\EditWebWork::route('/{record}/edit'),
         ];
     }
 }
