@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 
 class WebWorkResource extends Resource
 {
@@ -23,10 +24,13 @@ class WebWorkResource extends Resource
     public static function form(Forms\Form $form): Forms\Form
     {
         return $form->schema([
-            FileUpload::make('image')
+            FileUpload::make('images')
+                ->label("Images ( Select at least 3 )")
                 ->disk('public')
                 ->directory('webworks')
                 ->image()
+                ->multiple()
+                ->maxParallelUploads(3)
                 ->imageResizeTargetWidth(1920)
                 ->imageResizeTargetHeight(1080)
                 ->columnSpanFull()
@@ -67,13 +71,25 @@ class WebWorkResource extends Resource
     public static function table(Tables\Table $table): Tables\Table
     {
         return $table->columns([
-            ImageColumn::make('image')
-                ->disk('public')
-                ->label('Image'),
+            ImageColumn::make('images')
+                ->disk('public'),
 
             TextColumn::make('title')->sortable()->searchable(),
-            TextColumn::make('date')->date()->sortable(),
-        ]);
+            ToggleColumn::make('featured') // Added toggle switch in table
+                ->label('Featured')
+                ->sortable(),
+            TextColumn::make('date')->since()->sortable(),
+        ])->filters([
+                    //
+                ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
     }
 
     public static function getRelations(): array

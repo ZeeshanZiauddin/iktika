@@ -17,6 +17,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -41,16 +42,17 @@ class MarketingResource extends Resource
 
                 Select::make('type')
                     ->options([
-                        'FACEBOOK' => 'Facebook Page',
-                        'META' => 'Instagram',
+                        'facebook' => 'Facebook Page',
+                        'instagram' => 'Instagram',
                     ])
                     ->default('facebook')
                     ->required(),
-
                 TextInput::make('page_username')
                     ->label('Username')
+                    ->unique('marketings', 'page_username')
+                    ->rules('unique:marketings,page_username')
                     ->required(),
-                FileUpload::make('image')
+                FileUpload::make('images')
                     ->disk('public')
                     ->directory('socials')
                     ->imageResizeMode('cover')
@@ -66,11 +68,14 @@ class MarketingResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')->height('80px')->disk('public')->label('Image'),
+                ImageColumn::make('images')->height('80px')->disk('public')->label('Image'),
                 TextColumn::make('user.name')->label('User'),
                 TextColumn::make('short_title')->searchable(),
                 TextColumn::make('type')->sortable(),
                 TextColumn::make('page_username'),
+                ToggleColumn::make('featured') // Added toggle switch in table
+                    ->label('Featured')
+                    ->sortable(),
                 TextColumn::make('created_at')->since(),
             ])
             ->filters([

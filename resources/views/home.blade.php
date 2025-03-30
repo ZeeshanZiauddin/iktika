@@ -3,15 +3,15 @@
 @section('content')
 
 
+
   <div id="content">
     <main class="bg-primary-green-600">
     <div class="pin-spacer">
       <section class="video-banner-section parallax-effect" data-header-color="transparent">
       <div class="video-wrapper">
         <video class="video-banner" loop="" muted="" playsinline="" preload="auto" autoplay="">
-        <source src="assets/webdesign.mp4" type="video/mp4" media="(min-width: 769px)" />
-        <source src="https://youtu.be/GLB8A-uCiEA?si=vl9XXQRdbDip8nLz" type="video/mp4"
-          media="(max-width: 768px)" />
+        <source src="{{asset('assets/webdesign.mp4')}}" type="video/mp4" media="(min-width: 769px)" />
+        <source src="{{asset('assets/webdesign.mp4')}}" type="video/mp4" media="(max-width: 768px)" />
         </video>
 
         <div class="masks-svgs-container"></div>
@@ -52,7 +52,7 @@
           </p>
         </div>
         <div class="button-container btnContact">
-          <button class="primary-button">contact us</button>
+          <a href="{{route('contact')}}" class="primary-button">contact us</a>
         </div>
         </div>
       </div>
@@ -84,98 +84,50 @@
         </div>
         <div class="works">
         <div class="works-inside-grid">
-          <div class="mobile-special-container">
-          <div class="mobile-image">
-            <svg width="146" height="609" viewBox="0 0 146 609" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M143 562.486L2.4 608.086L2.4 581.286L110.6 547.486L110.6 556.486L2.39999 523.286L2.39999 503.086L110.6 469.886L110.6 479.086L2.39999 445.086L2.39999 418.286L143 464.086L143 484.286L35 517.686L35 508.886L143 542.086L143 562.486ZM145.2 339.513C145.2 349.78 143.333 359.38 139.6 368.313C135.867 377.113 130.733 384.846 124.2 391.513C117.533 398.046 109.8 403.18 101 406.913C92.0667 410.646 82.5333 412.513 72.4 412.513C62.2667 412.513 52.8667 410.713 44.2 407.113C35.4 403.38 27.7333 398.246 21.2 391.713C14.5333 385.046 9.39998 377.313 5.79998 368.513C2.06665 359.713 0.199979 350.18 0.199979 339.913C0.199978 329.513 2.06664 319.913 5.79998 311.113C9.39998 302.313 14.5333 294.646 21.2 288.113C27.7333 281.446 35.4 276.246 44.2 272.513C53 268.78 62.4666 266.913 72.6 266.913C82.7333 266.913 92.2 268.78 101 272.513C109.8 276.246 117.533 281.446 124.2 288.113C130.733 294.646 135.867 302.313 139.6 311.113C143.333 319.78 145.2 329.246 145.2 339.513ZM119.8 339.913C119.8 330.846 117.8 322.98 113.8 316.313C109.8 309.646 104.267 304.446 97.2 300.713C90.1333 296.846 81.8667 294.913 72.4 294.913C65.4666 294.913 59.1333 295.98 53.4 298.113C47.6666 300.246 42.7333 303.313 38.6 307.313C34.3333 311.313 31.0666 316.046 28.8 321.513C26.5333 326.98 25.4 333.113 25.4 339.913C25.4 348.713 27.4 356.513 31.4 363.313C35.2666 369.98 40.7333 375.246 47.8 379.113C54.8667 382.846 63.0667 384.713 72.4 384.713C79.4667 384.713 85.9333 383.646 91.8 381.513C97.6667 379.246 102.667 376.18 106.8 372.313C110.933 368.313 114.133 363.58 116.4 358.113C118.667 352.513 119.8 346.446 119.8 339.913ZM84.2 225.352L63 225.352L63 192.752C63 186.085 61.3333 180.952 58 177.352C54.5333 173.619 49.8 171.752 43.8 171.752C38.3333 171.752 33.8 173.619 30.2 177.352C26.4666 180.952 24.6 186.085 24.6 192.752L24.6 225.352L2.39998 225.352L2.39998 190.352C2.39998 181.285 4.19998 173.352 7.79997 166.552C11.2666 159.619 16.0666 154.285 22.2 150.552C28.3333 146.685 35.4 144.752 43.4 144.752C51.6666 144.752 58.8666 146.685 65 150.552C71 154.285 75.7333 159.619 79.2 166.552C82.5333 173.485 84.2 181.552 84.2 190.752L84.2 225.352ZM143 245.352L2.39998 245.352L2.39998 218.152L143 218.152L143 245.352ZM143 168.552L82.2 214.952L74.4 189.952L143 135.552L143 168.552ZM143 35.1566L69.6 96.1566L2.39997 36.7566L2.39997 2.75663L75.4 68.9566L62.8 68.9566L143 0.556629L143 35.1566ZM143 120.157L2.39998 120.157L2.39998 92.9566L143 92.9566L143 120.157Z"
-              fill="#FF0000"></path>
-            </svg>
-          </div>
+          @foreach ($featuredMarketings as $index => $item)
+        @if ($index === 0)
+      <!-- First item uses this layout -->
+      <div class="mobile-special-container">
 
-          <a href="https://bbdo.com/work/pedigree-adoptable/" class="card-work main-card">
-            <div class="card-work-container">
-            <div class="image-container">
-              <img src="assets/social-media/erika.png" alt="Pedigree image" />
-            </div>
-            <div class="card-work-text-content">
-              <h2>INSTA</h2>
-              <div class="subtitle-line">
-              <div class="line"></div>
-              <h3>Erika Durate</h3>
-              </div>
-            </div>
-            </div>
-          </a>
-          </div>
-
-          <a href="https://bbdo.com/work/att-sleep-with-rain/" class="card-work">
-          <div class="card-work-container">
-            <div class="image-container">
-            <img src="assets/social-media/mujer.png" alt="AT&amp;T image" />
-            </div>
-            <div class="card-work-text-content">
-            <h2>FACEBOOK</h2>
-            <div class="subtitle-line">
-              <div class="line"></div>
-              <h3>Erika Durate</h3>
-            </div>
-            </div>
-          </div>
-          </a>
-
-          <a href="https://bbdo.com/work/bodyform-never-just-a-period/" class="card-work">
-          <div class="card-work-container">
-            <div class="image-container">
-            <img src="assets/social-media/mamas.png" alt="Bodyform image" />
-            </div>
-            <div class="card-work-text-content">
-            <h2>FACEBOOK</h2>
-            <div class="subtitle-line">
-              <div class="line"></div>
-              <h3>Mamas Emprendedoras</h3>
-            </div>
-            </div>
-          </div>
-          </a>
-        </div>
+      <a href="{{url('marketing/' . $item['id'])}}" class="card-work main-card">
+      <div class="card-work-container">
+      <div class="image-container">
+        <img src="{{asset('storage/' . $item['images'])}}" alt="{{ $item['short_title'] }}" />
+      </div>
+      <div class="card-work-text-content">
+        <h2 class="uppercase ">{{$item['type']}}</h2>
+        <div class="subtitle-line">
+        <div class="line"></div>
+        <h3>{{ $item['short_title'] }}</h3>
         </div>
       </div>
-      <div class="flex-works" data-animation="fade-in">
-        <a href="https://bbdo.com/work/meta-asgards-wrath-2-launch/" class="card-work">
-        <div class="card-work-container">
-          <div class="image-container">
-          <img
-            src="https://iktika.com/wp-content/uploads/2025/01/Captura-de-pantalla-2025-01-24-131845-768x382.png"
-            alt="Meta image" />
-          </div>
-          <div class="card-work-text-content">
-          <h2>Instagram</h2>
-          <div class="subtitle-line">
-            <div class="line"></div>
-            <h3>Isabelzetinatrendy</h3>
-          </div>
-          </div>
-        </div>
-        </a>
+      </div>
+      </a>
+      </div>
+    @else
+    <!-- Other items use this layout -->
+    <a href="{{url('marketing/' . $item['id'])}}" class="card-work">
+    <div class="card-work-container">
+    <div class="image-container">
+    <img src="{{asset('storage/' . $item['images'])}}" alt="{{ $item['short_title'] }}" />
+    </div>
+    <div class="card-work-text-content">
+    <h2 class="uppercase ">{{$item['type']}}</h2>
+    <div class="subtitle-line">
+      <div class="line"></div>
+      <h3>{{ $item['short_title'] }}</h3>
+    </div>
+    </div>
+    </div>
+    </a>
+  @endif
+      @endforeach
 
-        <a href="https://bbdo.com/work/pepsi-chase-cars/" class="card-work">
-        <div class="card-work-container">
-          <div class="image-container">
-          <img src="assets/isebeltrend.png" alt="Pepsi image" />
-          </div>
-          <div class="card-work-text-content">
-          <h2>Facebook</h2>
-          <div class="subtitle-line">
-            <div class="line"></div>
-            <h3>Isabel Zatina Trends</h3>
-          </div>
-          </div>
         </div>
-        </a>
+        </div>
       </div>
       <div class="button-container" data-animation="fade-in" data-animation-start="-140px 98%">
-        <a href="/work/" class="secondary-button-outline" rel="noopener noreferrer">
+        <a href="{{route('work')}}" class="secondary-button-outline" rel="noopener noreferrer">
         View all Goals
         </a>
       </div>
@@ -200,7 +152,7 @@
         </div>
       </div>
       <div class="button-container" data-animation="fade-in" data-animation-start="-140px 98%">
-        <a href="/work/" class="secondary-button-outline" rel="noopener noreferrer">
+        <a href="{{route('contact')}}" class="secondary-button-outline" rel="noopener noreferrer">
         Contact Us
         </a>
       </div>
@@ -209,68 +161,56 @@
       <section class="news-section" data-header-color="green">
       <div class="news-container">
         <div class="news-grid-container">
-        <div class="mobile-news-special-container">
-          <div class="mobile-news-image">
-          <img src="/wp-content/uploads/2025/01/NEWS.png" alt="news-image" />
-          </div>
+        @foreach ($featuredWebWorks as $index => $item)
+      @if ($index === 0)
+      <div class="mobile-news-special-container">
+      <div class="mobile-news-image">
+      <img src="{{asset('storage' . $item['images'][0])}}" alt="{{$item['title']}}" />
+      </div>
 
-          <a href="#" class="card-news horizontal" target="_blank">
-          <div class="card-news__image">
-            <img src="assets/web-design/NobleMachine.png" alt="" />
-          </div>
-          <div class="card-news__content">
-            <div class="card-news__head">
-            <h3>
-              NOBEL MACHINE LLC - Specialize in the machining connoisseurs and also machining of complex parts.
-            </h3>
+      <a href="{{ url('web/' . $item['id']) }}" class="card-news horizontal" target="_blank">
+      <div class="card-news__image">
+      <img src="{{asset('storage/' . $item['images'][2])}}" alt="{{$item['title']}}" />
+      </div>
+      <div class="card-news__content">
+      <div class="card-news__head">
+      <h3>
+        {{$item['title']}}
+      </h3>
 
-            </div>
-            <span class="news-date">February 20, 2025</span>
-            <p>
-            We designed their website and are also managing their social media accounts to ensure consistent
-            branding and engagement across all platforms.
-            </p>
-          </div>
-          </a>
-        </div>
+      </div>
+      <span class="news-date">{{ \Carbon\Carbon::parse($item['date'])->format('F j, Y') }}
+      </span>
+      <p>
+      {{$item['short_description']}}
+      </p>
+      </div>
+      </a>
+      </div>
+    @else
+      <a href="{{ url('web/' . $item['id']) }}" class="card-news" target="_blank">
+      <div class="card-news__image">
+      <img src="{{asset('storage/' . $item['images'][0])}}" alt="{{$item['title']}}" />
+      </div>
+      <div class=" card-news__content">
+      <div class="card-news__head">
+      <h3>
+      {{$item['title']}}
+      </h3>
 
-        <a href="#" class="card-news" target="_blank">
-          <div class="card-news__image">
-          <img src="assets/web-design/ivette.png" alt="" />
-          </div>
-          <div class="card-news__content">
-          <div class="card-news__head">
-            <h3>
-            IVETTE - Redefining Beauty: Studio & Academy Excellence
-            </h3>
+      </div>
+      <span class="news-date">{{ \Carbon\Carbon::parse($item['date'])->format('F j, Y') }}
+      </span>
+      <p>
+      {{$item['short_description']}}
+      </p>
+      </div>
+      </a>
 
-          </div>
-          <span class="news-date">January 15, 2025</span>
-          <p>
-            We designed their website and are also managing their social media accounts to ensure consistent
-            branding and engagement across all platforms.
-          </p>
-          </div>
-        </a>
+    @endif
+    @endforeach
 
-        <a href="#" class="card-news" target="_blank">
-          <div class="card-news__image">
-          <img src="assets/web-design/mamas.png" alt="" />
-          </div>
-          <div class="card-news__content">
-          <div class="card-news__head">
-            <h3>
-            MAMAS Emprendedoras - podcasting platform for mothers who are entrepreneurs
-            </h3>
 
-          </div>
-          <span class="news-date">December 19, 2024</span>
-          <p>
-            We designed their website and are also managing their social media accounts to ensure consistent
-            branding and engagement across all platforms.
-          </p>
-          </div>
-        </a>
         </div>
 
         <div class="pin-spacer">

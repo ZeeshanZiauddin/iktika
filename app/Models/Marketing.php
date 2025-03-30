@@ -15,7 +15,7 @@ class Marketing extends Model
         'short_title',
         'long_title',
         'type',
-        'image',
+        'images',
         'page_username',
         'description',
     ];

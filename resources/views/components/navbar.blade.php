@@ -2,7 +2,8 @@
     <header id="masthead">
         <div class="header-content-container header-transparent">
             <a class="logo-container" href="{{route('home')}}">
-                <img src="assets/logo.png" id="Headerlogo" style="width: 200px" alt="Logo IKTIKA" />
+                <img src="{{asset('assets/logo.png')}}" id="Headerlogo" data-root="{{asset('assets/')}}"
+                    style="width: 200px" alt="Logo IKTIKA" />
             </a>
             <div class="menu-icon-container open-nav">
                 <img src="{{asset('assets/icons/menue-white.png')}}" id="menu-icon" alt="menu icon" />

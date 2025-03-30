@@ -8,7 +8,7 @@ return new class extends Migration {
     {
         Schema::create('web_works', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable(); // Image can be null
+            $table->longText('images')->nullable(); // Image can be null
             $table->string('title')->nullable();
             $table->date('date')->nullable();
             $table->text('short_description')->nullable(); // Added short description

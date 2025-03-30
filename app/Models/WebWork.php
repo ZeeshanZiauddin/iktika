@@ -8,5 +8,8 @@ class WebWork extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image', 'title', 'date', 'short_description', 'description', 'for'];
+    protected $fillable = ['images', 'title', 'date', 'short_description', 'description', 'for'];
+    protected $casts = [
+        'images' => 'array',
+    ];
 }
